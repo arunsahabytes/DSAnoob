@@ -1,3 +1,4 @@
+// Last updated: 5/12/2025, 12:06:23 AM
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
