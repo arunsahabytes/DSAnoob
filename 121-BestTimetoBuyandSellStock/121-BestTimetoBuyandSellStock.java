@@ -1,19 +1,24 @@
-// Last updated: 5/9/2025, 5:57:44 PM
+// Last updated: 5/24/2025, 12:16:25 AM
 class Solution {
     public int maxProfit(int[] prices) {
-        int left =0;
-        int right = 1;
-        int maxP = 0;
-        while ( right < prices.length){
-            if(prices[left] < prices[right]){
-               int profit = prices[right] - prices[left];
-                maxP = Math.max(maxP, profit);
+        if (prices == null || prices.length < 2) {
+            return 0;
+        }
+
+        int maxProfit = 0;
+        int buy = 0;
+        int sell = 1;
+
+        while(sell<prices.length){
+            if(prices[sell] > prices[buy]){
+                int profit = prices[sell] - prices[buy];
+                maxProfit = Math.max(maxProfit, profit);
             }
             else{
-                left = right;
+                buy = sell;
             }
-             right += 1;
+            sell++;
         }
-        return maxP;
+        return maxProfit;
     }
 }
