@@ -1,13 +1,17 @@
-// Last updated: 5/11/2025, 8:44:15 PM
+// Last updated: 8/13/2025, 9:44:23 PM
 class Solution {
     public boolean containsDuplicate(int[] nums) {
     
-    Set<Integer> seen = new HashSet<Integer>();
+    HashSet<Integer> seen = new HashSet<>();
+
     for(int num: nums){
-        if(!seen.add(num)){
-            return true;
+        if(seen.contains(num)){
+                return true;
+            }
+            else{
+            seen.add(num);
         }
     }
     return false;
-}
+    }
 }
