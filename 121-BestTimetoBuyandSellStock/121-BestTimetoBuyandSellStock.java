@@ -1,4 +1,4 @@
-// Last updated: 5/24/2025, 12:16:25 AM
+// Last updated: 8/13/2025, 7:18:28 PM
 class Solution {
     public int maxProfit(int[] prices) {
         if (prices == null || prices.length < 2) {
