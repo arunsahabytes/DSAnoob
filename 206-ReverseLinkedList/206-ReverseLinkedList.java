@@ -1,24 +1,16 @@
-// Last updated: 8/11/2025, 11:54:04 PM
+// Last updated: 8/26/2025, 4:23:55 AM
 class Solution {
     public ListNode reverseList(ListNode head) {
-        // Initialize pointers
         ListNode prev = null;
-        ListNode current = head;
-        ListNode nextTemp = null; // A temporary pointer to store the next node
+        ListNode temp = head;
 
-        while (current != null) {
-            // Step 1: Store the next node before we lose the link
-            nextTemp = current.next;
 
-            // Step 2: Reverse the current node's pointer to point to the previous node
-            current.next = prev;
-
-            // Step 3: Move the pointers one step forward
-            prev = current;
-            current = nextTemp;
+        while(temp!=null){
+            ListNode front = temp.next;
+            temp.next = prev;
+            prev = temp;
+            temp=front;
         }
-
-        // After the loop, 'prev' is the new head of the reversed list
         return prev;
     }
 }
