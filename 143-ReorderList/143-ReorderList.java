@@ -1,4 +1,4 @@
-// Last updated: 8/24/2025, 11:13:30 PM
+// Last updated: 8/29/2025, 12:00:07 AM
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -11,34 +11,45 @@
  */
 class Solution {
     public void reorderList(ListNode head) {
+        
         if (head == null || head.next == null) return;
 
-        // Step 1: Find middle
-        ListNode slow = head, fast = head;
+        ListNode slow = head;
+        ListNode fast = head;
+
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        // Step 2: Reverse second half
-        ListNode prev = null, curr = slow.next;
-        slow.next = null; // break the list
+        ListNode firstHalf = head;
+        ListNode secondHalf = slow.next;
+        slow.next = null;
+
+        ListNode prev = null;
+        ListNode curr = secondHalf;
+
+
         while (curr != null) {
-            ListNode nextTemp = curr.next;
+
+            ListNode nxt = curr.next;
             curr.next = prev;
             prev = curr;
-            curr = nextTemp;
+            curr = nxt;
         }
+        secondHalf = prev;
 
-        // Step 3: Merge two halves
-        ListNode first = head, second = prev;
-        while (second != null) {
-            ListNode tmp1 = first.next;
-            ListNode tmp2 = second.next;
-            first.next = second;
-            second.next = tmp1;
-            first = tmp1;
-            second = tmp2;
+        while (secondHalf != null) {
+    ListNode temp1 = firstHalf.next;
+    ListNode temp2 = secondHalf.next;
+
+    firstHalf.next = secondHalf;
+    secondHalf.next = temp1;  // \U0001f511 This is what you missed
+
+    firstHalf = temp1;
+    secondHalf = temp2;
+
+
         }
     }
 }
