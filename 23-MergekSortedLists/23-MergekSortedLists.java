@@ -1,4 +1,4 @@
-// Last updated: 8/26/2025, 11:39:09 PM
+// Last updated: 8/29/2025, 11:57:44 PM
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -11,19 +11,28 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
+       
         if (lists == null || lists.length == 0) return null;
+
         PriorityQueue<ListNode> pq = new PriorityQueue<>((a, b) -> a.val - b.val);
+
         for (ListNode node : lists) {
             if (node != null) pq.add(node);
         }
+
         ListNode dummy = new ListNode(0);
-        ListNode curr = dummy;
+        ListNode current = dummy;
+
         while (!pq.isEmpty()) {
-            ListNode node = pq.poll();
-            curr.next = node;
-            curr = curr.next;
-            if (node.next != null) pq.add(node.next);
+            ListNode smallest = pq.poll(); 
+            current.next = smallest;       
+            current = current.next;
+
+            if (smallest.next != null) {
+                pq.add(smallest.next);    
+            }
         }
+
         return dummy.next;
     }
 }
